@@ -1,0 +1,11 @@
+{
+    "expenses": [
+        {
+            "id": 1,
+            "category": "Food",
+            "amount": 15.88,
+            "comment": ""
+        }
+    ],
+    "incomes": []
+}
