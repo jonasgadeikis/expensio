@@ -1,11 +1,12 @@
 {
-    "expenses": [
+    "entries": [
         {
             "id": 1,
+            "type": "expense",
             "category": "Food",
-            "amount": 15.88,
+            "amount": -15.88,
+            "date": "2022-03-21",
             "comment": ""
         }
-    ],
-    "incomes": []
+    ]
 }
