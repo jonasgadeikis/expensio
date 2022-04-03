@@ -1,0 +1,12 @@
+{
+    "entries": [
+        {
+            "id": 1,
+            "type": "expense",
+            "category": "food",
+            "amount": -15.88,
+            "date": "2022-03-21",
+            "comment": ""
+        }
+    ]
+}
