@@ -1,15 +1,13 @@
 <template>
-    <div>{{ message }}</div>
+    <categories />
 </template>
 
 <script>
+    import Categories from './views/Categories.vue';
+
     export default {
-        data: () => ({
-            message: 'Hello Vue 3',
-        }),
+        components: {
+            Categories,
+        },
     };
 </script>
-
-<style>
-
-</style>
