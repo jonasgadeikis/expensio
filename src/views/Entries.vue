@@ -35,8 +35,8 @@
                 </div>
             </div>
         </div>
+        <new-entry-dialog @entry:saved="getEntries" />
     </div>
-    <new-entry-dialog @entry:saved="getEntries" />
 </template>
 
 <script>

@@ -1,11 +1,17 @@
 <template>
     <nav class="nav-bar">
         <div class="nav-bar-content">
-            <span class="nav-bar-title">Expensio</span>
+            <router-link to="/">
+                <span class="nav-bar-title">Expensio</span>
+            </router-link>
             <div class="spacer" />
             <div class="nav-bar-links">
-                <span class="nav-bar-link">Categories</span>
-                <span class="ml-3 nav-bar-link">Entries</span>
+                <router-link to="/categories">
+                    <span class="nav-bar-link">Categories</span>
+                </router-link>
+                <router-link to="/entries">
+                    <span class="ml-3 nav-bar-link">Entries</span>
+                </router-link>
             </div>
         </div>
     </nav>

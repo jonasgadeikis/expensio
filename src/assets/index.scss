@@ -17,6 +17,11 @@ $nav-bar-color: #7D5FFF;
 
 body {
   font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
 }
 
 .btn {
@@ -162,6 +167,16 @@ body {
   text-transform: capitalize;
 }
 
+.text-center {
+  text-align: center;
+}
+
+.home-title {
+  margin: 200px auto;
+  font-size: 2rem;
+  font-weight: 500;
+}
+
 .nav-bar {
   position: sticky;
   height: 70px;
@@ -186,9 +201,24 @@ body {
 
   &-link {
     cursor: pointer;
+    color: $dark-color;
 
     &:hover {
       color: $white-color;
     }
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }

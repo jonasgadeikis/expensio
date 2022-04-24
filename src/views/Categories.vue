@@ -27,8 +27,8 @@
                 </div>
             </div>
         </div>
+        <new-category-modal @category:saved="getCategories" />
     </div>
-    <new-category-modal @category:saved="getCategories" />
 </template>
 
 <script>
