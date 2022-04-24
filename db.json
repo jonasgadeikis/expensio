@@ -1,12 +1,15 @@
 {
-    "entries": [
-        {
-            "id": 1,
-            "type": "expense",
-            "category": "food",
-            "amount": -15.88,
-            "date": "2022-03-21",
-            "comment": ""
-        }
-    ]
+  "categories": [
+    {
+      "name": "Food",
+      "limit": 1000,
+      "id": 1
+    },
+    {
+      "name": "Clothes",
+      "limit": 200,
+      "id": 2
+    }
+  ],
+  "entries": []
 }
