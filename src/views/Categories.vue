@@ -33,7 +33,7 @@
 
 <script>
 import axios from 'axios';
-import NewCategoryModal from '../components/NewCategoryModal.vue';
+import NewCategoryModal from '../components/modals/NewCategoryModal.vue';
 
 export default {
     name: 'Categories',

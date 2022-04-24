@@ -6,11 +6,17 @@ $shadow-color: 0 0 9px -2px rgba(0,0,0,0.3);
 $disabled-color: #BDC3C7;
 $gray-color: #7F8C8D;
 $dark-color: #2D3436;
+$red-color: #E74C3C;
+$nav-bar-color: #7D5FFF;
 
 * {
   box-sizing: border-box;;
   margin: 0;
   padding: 0;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
 }
 
 .btn {
@@ -57,7 +63,7 @@ $dark-color: #2D3436;
     display: flex;
     padding: 16px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   &-subtitle {
@@ -124,6 +130,10 @@ $dark-color: #2D3436;
   padding: 10px 5px;
 }
 
+.input-select {
+  padding: 10px 5px;
+}
+
 .d-flex {
   display: flex;
 }
@@ -138,4 +148,47 @@ $dark-color: #2D3436;
 
 .ml-3 {
   margin-left: 12px;
+}
+
+.red-color {
+  color: $red-color;
+}
+
+.green-color {
+  color: $primary-color;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.nav-bar {
+  position: sticky;
+  height: 70px;
+  background-color: $nav-bar-color;
+
+  &-content {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &-title {
+    color: $white-color;
+    font-size: 1.5rem;
+  }
+
+  &-links {
+
+  }
+
+  &-link {
+    cursor: pointer;
+
+    &:hover {
+      color: $white-color;
+    }
+  }
 }

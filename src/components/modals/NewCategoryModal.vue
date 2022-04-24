@@ -13,7 +13,7 @@
                             for="categoryName"
                             class="input-label"
                         >
-                            Category Name
+                            Name
                         </label>
                         <input
                             id="categoryName"
@@ -26,13 +26,13 @@
                             for="categoryLimit"
                             class="input-label"
                         >
-                            Category Limit
+                            Limit
                         </label>
                         <input
                             type="number"
                             id="categoryLimit"
                             class="input-text"
-                            v-model="category.limit"
+                            v-model.number="category.limit"
                         >
                     </div>
                 </div>
