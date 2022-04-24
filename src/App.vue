@@ -3,11 +3,11 @@
 </template>
 
 <script>
-    import Categories from './views/Categories.vue';
+import Categories from './views/Categories.vue';
 
-    export default {
-        components: {
-            Categories,
-        },
-    };
+export default {
+    components: {
+        Categories,
+    },
+};
 </script>

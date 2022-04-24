@@ -1,4 +1,15 @@
 {
-  "categories": [],
+  "categories": [
+    {
+      "name": "Food",
+      "limit": 1000,
+      "id": 1
+    },
+    {
+      "name": "Clothes",
+      "limit": 200,
+      "id": 2
+    }
+  ],
   "entries": []
 }

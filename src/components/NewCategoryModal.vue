@@ -9,12 +9,31 @@
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
-                        <label for="categoryName" class="input-label">Category Name</label>
-                        <input id="categoryName" class="input-text" v-model="category.name">
+                        <label
+                            for="categoryName"
+                            class="input-label"
+                        >
+                            Category Name
+                        </label>
+                        <input
+                            id="categoryName"
+                            class="input-text"
+                            v-model.trim="category.name"
+                        >
                     </div>
                     <div class="d-flex flex-column">
-                        <label for="categoryLimit" class="input-label">Category Limit</label>
-                        <input type="number" id="categoryLimit" class="input-text" v-model="category.limit">
+                        <label
+                            for="categoryLimit"
+                            class="input-label"
+                        >
+                            Category Limit
+                        </label>
+                        <input
+                            type="number"
+                            id="categoryLimit"
+                            class="input-text"
+                            v-model="category.limit"
+                        >
                     </div>
                 </div>
                 <div class="card-actions">
@@ -42,36 +61,39 @@
 </template>
 
 <script>
-    import axios from 'axios';
+import axios from 'axios';
 
-    export default {
-        name: 'NewCategoryModal',
-        data: () => ({
-            category: {
-                name: null,
-                limit: null,
-            },
-        }),
-        computed: {
-            isSavingDisabled() {
-                return !this.category.name || !this.category.limit;
-            },
+export default {
+    name: 'NewCategoryModal',
+    data: () => ({
+        category: {
+            name: null,
+            limit: null,
         },
-        methods: {
-            saveCategory() {
-                axios.post('http://localhost:3000/categories', this.category).then(() => {
-                    this.category.name = null;
-                    this.category.limit = null;
-
-                    this.$emit('category:saved');
-                    this.closeNewCategoryModal();
-                });
-            },
-            closeNewCategoryModal() {
-                const modal = document.getElementById('newCategoryModal');
-
-                modal.style.display = 'none';
-            },
+    }),
+    computed: {
+        isSavingDisabled() {
+            return !this.category.name || !this.category.limit;
         },
-    };
+    },
+    methods: {
+        saveCategory() {
+            axios.post('http://localhost:3000/categories', this.category).then(() => {
+                this.category.name = null;
+                this.category.limit = null;
+
+                this.$emit('category:saved');
+                this.closeNewCategoryModal();
+            });
+        },
+        closeNewCategoryModal() {
+            const modal = document.getElementById('newCategoryModal');
+
+            modal.style.display = 'none';
+
+            // Works here the same as above code when ref is declared
+            // this.$refs.newCategoryModal.style.display = 'none';
+        },
+    },
+};
 </script>

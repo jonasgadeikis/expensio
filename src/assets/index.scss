@@ -1,3 +1,12 @@
+$white-color: #FFFFFF;
+$primary-color: #27AE60;
+$primary-darken-color: #16A085;
+$primary-lighten-color: #7BED9F;
+$shadow-color: 0 0 9px -2px rgba(0,0,0,0.3);
+$disabled-color: #BDC3C7;
+$gray-color: #7F8C8D;
+$dark-color: #2D3436;
+
 * {
   box-sizing: border-box;;
   margin: 0;
@@ -10,38 +19,39 @@
   transition: all 0.3s linear;
   border-radius: 5px;
   cursor: pointer;
-  box-shadow: 0 0 9px -2px rgba(0,0,0,0.3);
+  box-shadow: $shadow-color;
 
   &-primary {
-    background-color: #27ae60;
-    color: #FFFFFF;
+    background-color: $primary-color;
+    color: $white-color;
 
     &:hover {
-      background-color: #16a085;
-      color: #FFFFFF;
+      background-color: $primary-darken-color;
+      color: $white-color;
     }
   }
 
   &-outlined {
     box-shadow: none;
-    border: 1px solid #27ae60;
-    background-color: #FFFFFF;
+    border: 1px solid $primary-color;
+    background-color: $white-color;
   }
 
   &-disabled {
-    background-color: #bdc3c7;
-    color: #7f8c8d;
+    background-color: $disabled-color;
+    color: $gray-color;
     pointer-events: none;
   }
 }
 
 .page-container {
-  width: 600px;
+  width: 80%;
   margin: 20px auto;
 }
 
 .card {
-  box-shadow: 0 0 9px -2px rgba(0,0,0,0.3);
+  box-shadow: $shadow-color;
+  border-radius: 5px;
 
   &-title {
     display: flex;
@@ -53,7 +63,7 @@
   &-subtitle {
     padding: 0 16px 16px;
     font-size: 16px;
-    color: #95a5a6;
+    color: $gray-color;
   }
 
   &-body {
@@ -63,6 +73,19 @@
   &-actions {
     display: flex;
     padding: 16px;
+  }
+
+  &-flat {
+    box-shadow: none;
+  }
+
+  &-bordered {
+    border: 1px solid $gray-color;
+    border-radius: 5px;
+  }
+
+  &-color-primary-light {
+    background-color: $primary-lighten-color;
   }
 }
 
@@ -84,7 +107,7 @@
 }
 
 .modal-content {
-  background-color: #fefefe;
+  background-color: $white-color;
   margin: 5% auto;
   width: 500px;
 }
