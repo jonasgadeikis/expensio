@@ -10,14 +10,15 @@ $red-color: #E74C3C;
 $nav-bar-color: #7D5FFF;
 
 * {
-  box-sizing: border-box;;
-  margin: 0;
-  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
   overflow-x: hidden;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }
 
 a {
@@ -57,7 +58,8 @@ a {
 
 .page-container {
   width: 80%;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding-top: 100px;
 }
 
 .card {
@@ -172,13 +174,14 @@ a {
 }
 
 .home-title {
-  margin: 200px auto;
   font-size: 2rem;
   font-weight: 500;
 }
 
 .nav-bar {
-  position: sticky;
+  position: fixed;
+  top: 0;
+  width: 100%;
   height: 70px;
   background-color: $nav-bar-color;
 
