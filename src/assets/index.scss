@@ -6,11 +6,23 @@ $shadow-color: 0 0 9px -2px rgba(0,0,0,0.3);
 $disabled-color: #BDC3C7;
 $gray-color: #7F8C8D;
 $dark-color: #2D3436;
+$red-color: #E74C3C;
+$nav-bar-color: #7D5FFF;
 
 * {
-  box-sizing: border-box;;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+  height: 100vh;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
 }
 
 .btn {
@@ -46,7 +58,8 @@ $dark-color: #2D3436;
 
 .page-container {
   width: 80%;
-  margin: 20px auto;
+  margin: 0 auto;
+  padding-top: 100px;
 }
 
 .card {
@@ -57,7 +70,7 @@ $dark-color: #2D3436;
     display: flex;
     padding: 16px;
     font-size: 24px;
-    font-weight: bold;
+    font-weight: 500;
   }
 
   &-subtitle {
@@ -124,6 +137,10 @@ $dark-color: #2D3436;
   padding: 10px 5px;
 }
 
+.input-select {
+  padding: 10px 5px;
+}
+
 .d-flex {
   display: flex;
 }
@@ -138,4 +155,73 @@ $dark-color: #2D3436;
 
 .ml-3 {
   margin-left: 12px;
+}
+
+.red-color {
+  color: $red-color;
+}
+
+.green-color {
+  color: $primary-color;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.home-title {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.nav-bar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 70px;
+  background-color: $nav-bar-color;
+
+  &-content {
+    margin: 0 auto;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  &-title {
+    color: $white-color;
+    font-size: 1.5rem;
+  }
+
+  &-links {
+
+  }
+
+  &-link {
+    cursor: pointer;
+    color: $dark-color;
+
+    &:hover {
+      color: $white-color;
+    }
+  }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.3s linear;
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
 }

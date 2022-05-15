@@ -13,7 +13,7 @@
                             for="categoryName"
                             class="input-label"
                         >
-                            Category Name
+                            Name
                         </label>
                         <input
                             id="categoryName"
@@ -26,13 +26,13 @@
                             for="categoryLimit"
                             class="input-label"
                         >
-                            Category Limit
+                            Limit
                         </label>
                         <input
                             type="number"
                             id="categoryLimit"
                             class="input-text"
-                            v-model="category.limit"
+                            v-model.number="category.limit"
                         >
                     </div>
                 </div>
@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         saveCategory() {
-            axios.post('http://localhost:3000/categories', this.category).then(() => {
+            axios.post(`${this.CONSTANTS.API_URL}/categories`, this.category).then(() => {
                 this.category.name = null;
                 this.category.limit = null;
 
@@ -90,9 +90,6 @@ export default {
             const modal = document.getElementById('newCategoryModal');
 
             modal.style.display = 'none';
-
-            // Works here the same as above code when ref is declared
-            // this.$refs.newCategoryModal.style.display = 'none';
         },
     },
 };

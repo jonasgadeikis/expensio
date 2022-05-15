@@ -27,13 +27,13 @@
                 </div>
             </div>
         </div>
+        <new-category-modal @category:saved="getCategories" />
     </div>
-    <new-category-modal @category:saved="getCategories" />
 </template>
 
 <script>
 import axios from 'axios';
-import NewCategoryModal from '../components/NewCategoryModal.vue';
+import NewCategoryModal from '../components/modals/NewCategoryModal.vue';
 
 export default {
     name: 'Categories',
@@ -45,7 +45,7 @@ export default {
     }),
     methods: {
         getCategories() {
-            return axios.get('http://localhost:3000/categories').then(response => {
+            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
                 this.categories = response.data;
             });
         },
