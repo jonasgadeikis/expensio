@@ -1,11 +1,14 @@
 <template>
-    <div id="newEntryModal" class="modal">
+    <div
+        :id="modalName"
+        class="modal"
+    >
         <div class="modal-content">
             <div class="card">
                 <div class="card-title">
                     <span>New Entry</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeNewEntryModal">&times;</span>
+                    <span class="cursor-pointer" @click="closeModal(modalName)">&times;</span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
@@ -96,7 +99,7 @@
                     <button
                         type="button"
                         class="ml-3 btn btn-outlined"
-                        @click="closeNewEntryModal"
+                        @click="closeModal(modalName)"
                     >
                         Cancel
                     </button>
@@ -107,19 +110,24 @@
 </template>
 
 <script>
-import axios from 'axios';
+import categoriesHandling from '../../mixins/categoriesHandling';
+import modalHandling from '../../mixins/modalHandling';
 
 const TYPE_EXPENSE = 'expense';
 const TYPE_INCOME = 'income';
 
 export default {
     name: 'NewEntryDialog',
+    mixins: [
+        categoriesHandling,
+        modalHandling,
+    ],
     data: () => ({
+        modalName: 'newEntryModal',
         types: [
             TYPE_EXPENSE,
             TYPE_INCOME,
         ],
-        categories: [],
         entry: {
             name: null,
             type: null,
@@ -137,29 +145,16 @@ export default {
             this.entry.category = null;
         },
         saveEntry() {
-            axios.post(`${this.CONSTANTS.API_URL}/entries`, this.entry).then(() => {
+            this.axios.post(`${this.CONSTANTS.API_URL}/entries`, this.entry).then(() => {
                 this.entry.name = null;
                 this.entry.type = null;
                 this.entry.category = null;
                 this.entry.amount = null;
 
                 this.$emit('entry:saved');
-                this.closeNewEntryModal();
+                this.closeModal(this.modalName);
             });
         },
-        getCategories() {
-            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
-                this.categories = response.data;
-            });
-        },
-        closeNewEntryModal() {
-            const modal = document.getElementById('newEntryModal');
-
-            modal.style.display = 'none';
-        },
-    },
-    mounted() {
-        this.getCategories();
     },
 };
 </script>

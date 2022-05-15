@@ -5,7 +5,7 @@
                 <div class="card-title">
                     <span>New Category</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeNewCategoryModal">&times;</span>
+                    <span class="cursor-pointer" @click="closeModal(modalName)">&times;</span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
@@ -50,7 +50,7 @@
                     <button
                         type="button"
                         class="ml-3 btn btn-outlined"
-                        @click="closeNewCategoryModal"
+                        @click="closeModal(modalName)"
                     >
                         Cancel
                     </button>
@@ -61,11 +61,15 @@
 </template>
 
 <script>
-import axios from 'axios';
+import modalHandling from '../../mixins/modalHandling';
 
 export default {
     name: 'NewCategoryModal',
+    mixins: [
+        modalHandling,
+    ],
     data: () => ({
+        modalName: 'newCategoryModal',
         category: {
             name: null,
             limit: null,
@@ -78,18 +82,13 @@ export default {
     },
     methods: {
         saveCategory() {
-            axios.post(`${this.CONSTANTS.API_URL}/categories`, this.category).then(() => {
+            this.axios.post(`${this.CONSTANTS.API_URL}/categories`, this.category).then(() => {
                 this.category.name = null;
                 this.category.limit = null;
 
                 this.$emit('category:saved');
-                this.closeNewCategoryModal();
+                this.closeModal(this.modalName);
             });
-        },
-        closeNewCategoryModal() {
-            const modal = document.getElementById('newCategoryModal');
-
-            modal.style.display = 'none';
         },
     },
 };

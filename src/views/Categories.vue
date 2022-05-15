@@ -6,7 +6,7 @@
                 <div class="spacer" />
                 <button
                     class="btn btn-primary"
-                    @click="openNewCategoryModal"
+                    @click="openModal('newCategoryModal')"
                 >
                     New Category
                 </button>
@@ -32,7 +32,8 @@
 </template>
 
 <script>
-import axios from 'axios';
+import categoriesHandling from '../mixins/categoriesHandling';
+import modalHandling from '../mixins/modalHandling';
 import NewCategoryModal from '../components/modals/NewCategoryModal.vue';
 
 export default {
@@ -40,26 +41,9 @@ export default {
     components: {
         NewCategoryModal,
     },
-    data: () => ({
-        categories: [],
-    }),
-    methods: {
-        getCategories() {
-            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
-                this.categories = response.data;
-            });
-        },
-        openNewCategoryModal() {
-            const modal = document.getElementById('newCategoryModal');
-
-            modal.style.display = 'block';
-
-            // Does not work this way
-            // this.$refs.newCategoryModal.style.display = 'block';
-        },
-    },
-    mounted() {
-        this.getCategories();
-    },
+    mixins: [
+        categoriesHandling,
+        modalHandling,
+    ],
 };
 </script>

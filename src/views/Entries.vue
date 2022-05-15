@@ -6,7 +6,7 @@
                 <div class="spacer" />
                 <button
                     class="btn btn-primary"
-                    @click="openNewEntryModal"
+                    @click="openModal('newEntryModal')"
                 >
                     New Entry
                 </button>
@@ -35,37 +35,32 @@
                 </div>
             </div>
         </div>
-        <new-entry-dialog @entry:saved="getEntries" />
+        <new-entry-modal @entry:saved="getEntries" />
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-import NewEntryDialog from '../components/modals/NewEntryDialog.vue';
+import modalHandling from '../mixins/modalHandling';
+import NewEntryModal from '../components/modals/NewEntryModal.vue';
 import formatNumber from '../utils/formatNumber';
 
 export default {
     name: 'Entries',
     components: {
-        NewEntryDialog,
+        NewEntryModal,
     },
+    mixins: [
+        modalHandling,
+    ],
     data: () => ({
         entries: [],
     }),
     methods: {
         formatNumber,
         getEntries() {
-            return axios.get(`${this.CONSTANTS.API_URL}/entries`).then(response => {
+            return this.axios.get(`${this.CONSTANTS.API_URL}/entries`).then(response => {
                 this.entries = response.data;
             });
-        },
-        openNewEntryModal() {
-            const modal = document.getElementById('newEntryModal');
-
-            modal.style.display = 'block';
-
-            // Does not work this way
-            // this.$refs.newCategoryModal.style.display = 'block';
         },
     },
     mounted() {
