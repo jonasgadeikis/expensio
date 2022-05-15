@@ -137,7 +137,7 @@ export default {
             this.entry.category = null;
         },
         saveEntry() {
-            axios.post('http://localhost:3000/entries', this.entry).then(() => {
+            axios.post(`${this.CONSTANTS.API_URL}/entries`, this.entry).then(() => {
                 this.entry.name = null;
                 this.entry.type = null;
                 this.entry.category = null;
@@ -148,7 +148,7 @@ export default {
             });
         },
         getCategories() {
-            return axios.get('http://localhost:3000/categories').then(response => {
+            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
                 this.categories = response.data;
             });
         },
@@ -156,9 +156,6 @@ export default {
             const modal = document.getElementById('newEntryModal');
 
             modal.style.display = 'none';
-
-            // Works here the same as above code when ref is declared
-            // this.$refs.newEntryModal.style.display = 'none';
         },
     },
     mounted() {

@@ -78,7 +78,7 @@ export default {
     },
     methods: {
         saveCategory() {
-            axios.post('http://localhost:3000/categories', this.category).then(() => {
+            axios.post(`${this.CONSTANTS.API_URL}/categories`, this.category).then(() => {
                 this.category.name = null;
                 this.category.limit = null;
 
@@ -90,9 +90,6 @@ export default {
             const modal = document.getElementById('newCategoryModal');
 
             modal.style.display = 'none';
-
-            // Works here the same as above code when ref is declared
-            // this.$refs.newCategoryModal.style.display = 'none';
         },
     },
 };

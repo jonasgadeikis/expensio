@@ -55,7 +55,7 @@ export default {
     methods: {
         formatNumber,
         getEntries() {
-            return axios.get('http://localhost:3000/entries').then(response => {
+            return axios.get(`${this.CONSTANTS.API_URL}/entries`).then(response => {
                 this.entries = response.data;
             });
         },

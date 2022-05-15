@@ -45,7 +45,7 @@ export default {
     }),
     methods: {
         getCategories() {
-            return axios.get('http://localhost:3000/categories').then(response => {
+            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
                 this.categories = response.data;
             });
         },
