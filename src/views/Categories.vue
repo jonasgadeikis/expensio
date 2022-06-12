@@ -6,7 +6,7 @@
                 <div class="spacer" />
                 <button
                     class="btn btn-primary"
-                    @click="openNewCategoryModal"
+                    @click="openDialog('newCategoryModal')"
                 >
                     New Category
                 </button>
@@ -27,39 +27,23 @@
                 </div>
             </div>
         </div>
-        <new-category-modal @category:saved="getCategories" />
+        <new-category-dialog @category:saved="getCategories" />
     </div>
 </template>
 
 <script>
-import axios from 'axios';
-import NewCategoryModal from '../components/modals/NewCategoryModal.vue';
+import categoriesHandling from '../mixins/categoriesHandling';
+import dialogStateHandling from '../mixins/dialogStateHandling';
+import NewCategoryDialog from '../components/modals/NewCategoryDialog.vue';
 
 export default {
     name: 'Categories',
     components: {
-        NewCategoryModal,
+        NewCategoryDialog,
     },
-    data: () => ({
-        categories: [],
-    }),
-    methods: {
-        getCategories() {
-            return axios.get(`${this.CONSTANTS.API_URL}/categories`).then(response => {
-                this.categories = response.data;
-            });
-        },
-        openNewCategoryModal() {
-            const modal = document.getElementById('newCategoryModal');
-
-            modal.style.display = 'block';
-
-            // Does not work this way
-            // this.$refs.newCategoryModal.style.display = 'block';
-        },
-    },
-    mounted() {
-        this.getCategories();
-    },
+    mixins: [
+        categoriesHandling,
+        dialogStateHandling,
+    ],
 };
 </script>

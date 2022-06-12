@@ -6,7 +6,7 @@
                 <div class="spacer" />
                 <button
                     class="btn btn-primary"
-                    @click="openNewEntryModal"
+                    @click="openDialog('newEntryModal')"
                 >
                     New Entry
                 </button>
@@ -20,7 +20,7 @@
                     >
                         <div class="card-title">
                             <span>
-                                <span v-if="entry.category">{{ entry.category.name }} &bull; </span>
+                                <span v-if="entry.categoryId">{{ getCategoryNameById(entry.categoryId) }} &bull; </span>
                                 <span>{{ entry.name }}</span>
                             </span>
                             <div class="spacer" />
@@ -40,32 +40,29 @@
 </template>
 
 <script>
-import axios from 'axios';
+import categoriesHandling from '../mixins/categoriesHandling';
+import dialogStateHandling from '../mixins/dialogStateHandling';
 import NewEntryDialog from '../components/modals/NewEntryDialog.vue';
-import formatNumber from '../utils/formatNumber';
+import { formatNumber } from '../utils/methods';
 
 export default {
     name: 'Entries',
     components: {
         NewEntryDialog,
     },
+    mixins: [
+        categoriesHandling,
+        dialogStateHandling,
+    ],
     data: () => ({
         entries: [],
     }),
     methods: {
         formatNumber,
         getEntries() {
-            return axios.get(`${this.CONSTANTS.API_URL}/entries`).then(response => {
+            return this.axios.get(`${this.CONSTANTS.API_URL}/entries`).then(response => {
                 this.entries = response.data;
             });
-        },
-        openNewEntryModal() {
-            const modal = document.getElementById('newEntryModal');
-
-            modal.style.display = 'block';
-
-            // Does not work this way
-            // this.$refs.newCategoryModal.style.display = 'block';
         },
     },
     mounted() {

@@ -1,4 +1,4 @@
-export default (number, fraction = 2) => {
+export const formatNumber = (number, fraction = 2) => {
     if (!number) {
         return Number(0).toFixed(fraction);
     }
