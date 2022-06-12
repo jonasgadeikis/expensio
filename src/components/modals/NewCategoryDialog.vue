@@ -5,7 +5,7 @@
                 <div class="card-title">
                     <span>New Category</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeModal(modalName)">&times;</span>
+                    <span class="cursor-pointer" @click="closeDialog(dialogName)">&times;</span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
@@ -50,7 +50,7 @@
                     <button
                         type="button"
                         class="ml-3 btn btn-outlined"
-                        @click="closeModal(modalName)"
+                        @click="closeDialog(dialogName)"
                     >
                         Cancel
                     </button>
@@ -61,15 +61,15 @@
 </template>
 
 <script>
-import modalHandling from '../../mixins/modalHandling';
+import dialogStateHandling from '../../mixins/dialogStateHandling';
 
 export default {
     name: 'NewCategoryModal',
     mixins: [
-        modalHandling,
+        dialogStateHandling,
     ],
     data: () => ({
-        modalName: 'newCategoryModal',
+        dialogName: 'newCategoryModal',
         category: {
             name: null,
             limit: null,
@@ -87,7 +87,7 @@ export default {
                 this.category.limit = null;
 
                 this.$emit('category:saved');
-                this.closeModal(this.modalName);
+                this.closeDialog(this.dialogName);
             });
         },
     },

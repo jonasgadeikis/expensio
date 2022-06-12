@@ -1,6 +1,6 @@
 <template>
     <div
-        :id="modalName"
+        :id="dialogName"
         class="modal"
     >
         <div class="modal-content">
@@ -8,7 +8,7 @@
                 <div class="card-title">
                     <span>New Entry</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeModal(modalName)">&times;</span>
+                    <span class="cursor-pointer" @click="closeDialog(dialogName)">&times;</span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
@@ -59,12 +59,12 @@
                         <select
                             id="entryCategory"
                             class="input-select"
-                            v-model="entry.category"
+                            v-model="entry.categoryId"
                         >
                             <option
                                 v-for="(category, categoryIndex) in categories"
                                 :key="`entry-category-${categoryIndex}`"
-                                :value="category"
+                                :value="category.id"
                             >
                                 {{ category.name }}
                             </option>
@@ -99,7 +99,7 @@
                     <button
                         type="button"
                         class="ml-3 btn btn-outlined"
-                        @click="closeModal(modalName)"
+                        @click="closeDialog(dialogName)"
                     >
                         Cancel
                     </button>
@@ -111,7 +111,8 @@
 
 <script>
 import categoriesHandling from '../../mixins/categoriesHandling';
-import modalHandling from '../../mixins/modalHandling';
+import dialogStateHandling from '../../mixins/dialogStateHandling';
+import Entry from '../../models/Entry';
 
 const TYPE_EXPENSE = 'expense';
 const TYPE_INCOME = 'income';
@@ -120,20 +121,15 @@ export default {
     name: 'NewEntryDialog',
     mixins: [
         categoriesHandling,
-        modalHandling,
+        dialogStateHandling,
     ],
     data: () => ({
-        modalName: 'newEntryModal',
+        dialogName: 'newEntryModal',
         types: [
             TYPE_EXPENSE,
             TYPE_INCOME,
         ],
-        entry: {
-            name: null,
-            type: null,
-            category: null,
-            amount: null,
-        },
+        entry: new Entry(),
     }),
     computed: {
         isSavingDisabled() {
@@ -142,17 +138,19 @@ export default {
     },
     methods: {
         resetCategory() {
-            this.entry.category = null;
+            this.entry.categoryId = null;
         },
         saveEntry() {
-            this.axios.post(`${this.CONSTANTS.API_URL}/entries`, this.entry).then(() => {
-                this.entry.name = null;
-                this.entry.type = null;
-                this.entry.category = null;
-                this.entry.amount = null;
+            const newEntry = {
+                ...this.entry,
+                createdAt: this.moment().format(this.CONSTANTS.DATE_TIME_FORMAT),
+            };
+
+            this.axios.post(`${this.CONSTANTS.API_URL}/entries`, newEntry).then(() => {
+                this.entry = new Entry();
 
                 this.$emit('entry:saved');
-                this.closeModal(this.modalName);
+                this.closeDialog(this.dialogName);
             });
         },
     },

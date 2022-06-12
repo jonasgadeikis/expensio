@@ -6,7 +6,7 @@
                 <div class="spacer" />
                 <button
                     class="btn btn-primary"
-                    @click="openModal('newEntryModal')"
+                    @click="openDialog('newEntryModal')"
                 >
                     New Entry
                 </button>
@@ -20,7 +20,7 @@
                     >
                         <div class="card-title">
                             <span>
-                                <span v-if="entry.category">{{ entry.category.name }} &bull; </span>
+                                <span v-if="entry.categoryId">{{ getCategoryNameById(entry.categoryId) }} &bull; </span>
                                 <span>{{ entry.name }}</span>
                             </span>
                             <div class="spacer" />
@@ -35,22 +35,24 @@
                 </div>
             </div>
         </div>
-        <new-entry-modal @entry:saved="getEntries" />
+        <new-entry-dialog @entry:saved="getEntries" />
     </div>
 </template>
 
 <script>
-import modalHandling from '../mixins/modalHandling';
-import NewEntryModal from '../components/modals/NewEntryModal.vue';
-import formatNumber from '../utils/formatNumber';
+import categoriesHandling from '../mixins/categoriesHandling';
+import dialogStateHandling from '../mixins/dialogStateHandling';
+import NewEntryDialog from '../components/modals/NewEntryDialog.vue';
+import { formatNumber } from '../utils/methods';
 
 export default {
     name: 'Entries',
     components: {
-        NewEntryModal,
+        NewEntryDialog,
     },
     mixins: [
-        modalHandling,
+        categoriesHandling,
+        dialogStateHandling,
     ],
     data: () => ({
         entries: [],
