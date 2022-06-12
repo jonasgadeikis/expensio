@@ -19,10 +19,7 @@
                         :key="entryIndex"
                     >
                         <div class="card-title">
-                            <span>
-                                <span v-if="entry.categoryId">{{ getCategoryNameById(entry.categoryId) }} &bull; </span>
-                                <span>{{ entry.name }}</span>
-                            </span>
+                            <span>{{ entry.name }}</span>
                             <div class="spacer" />
                             <span :class="entry.type === 'expense' ? 'red-color' : 'green-color'">
                                 {{ entry.type === 'expense' ? '-' : '' }}{{ formatNumber(entry.amount) }} $
@@ -35,14 +32,17 @@
                 </div>
             </div>
         </div>
-        <new-entry-dialog @entry:saved="getEntries" />
+        <new-entry-dialog
+            :categories="categories"
+            @entry:saved="getEntries"
+        />
     </div>
 </template>
 
 <script>
 import categoriesHandling from '../mixins/categoriesHandling';
 import dialogStateHandling from '../mixins/dialogStateHandling';
-import NewEntryDialog from '../components/modals/NewEntryDialog.vue';
+import NewEntryDialog from '../components/dialogs/NewEntryDialog.vue';
 import { formatNumber } from '../utils/methods';
 
 export default {

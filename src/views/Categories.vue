@@ -34,7 +34,7 @@
 <script>
 import categoriesHandling from '../mixins/categoriesHandling';
 import dialogStateHandling from '../mixins/dialogStateHandling';
-import NewCategoryDialog from '../components/modals/NewCategoryDialog.vue';
+import NewCategoryDialog from '../components/dialogs/NewCategoryDialog.vue';
 
 export default {
     name: 'Categories',

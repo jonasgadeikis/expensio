@@ -6,6 +6,9 @@ import axios from 'axios';
 import moment from 'moment';
 import CONSTANTS from './utils/constants';
 
+import EBtn from './components/base/EBtn.vue';
+import ECard from './components/base/ECard.vue';
+
 const app = createApp(App);
 
 app.use(router);
@@ -13,5 +16,8 @@ app.use(router);
 app.config.globalProperties.axios = axios;
 app.config.globalProperties.moment = moment;
 app.config.globalProperties.CONSTANTS = CONSTANTS;
+
+app.component('EBtn', EBtn);
+app.component('ECard', ECard);
 
 app.mount('#app');

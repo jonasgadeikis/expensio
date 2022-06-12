@@ -8,7 +8,12 @@
                 <div class="card-title">
                     <span>New Entry</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeDialog(dialogName)">&times;</span>
+                    <span
+                        class="cursor-pointer"
+                        @click="closeDialog(dialogName)"
+                    >
+                        &times;
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
@@ -110,7 +115,6 @@
 </template>
 
 <script>
-import categoriesHandling from '../../mixins/categoriesHandling';
 import dialogStateHandling from '../../mixins/dialogStateHandling';
 import Entry from '../../models/Entry';
 
@@ -120,9 +124,14 @@ const TYPE_INCOME = 'income';
 export default {
     name: 'NewEntryDialog',
     mixins: [
-        categoriesHandling,
         dialogStateHandling,
     ],
+    props: {
+        categories: {
+            type: Array,
+            required: true,
+        },
+    },
     data: () => ({
         dialogName: 'newEntryModal',
         types: [

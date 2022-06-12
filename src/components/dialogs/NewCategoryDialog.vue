@@ -5,7 +5,12 @@
                 <div class="card-title">
                     <span>New Category</span>
                     <div class="spacer" />
-                    <span class="cursor-pointer" @click="closeDialog(dialogName)">&times;</span>
+                    <span
+                        class="cursor-pointer"
+                        @click="closeDialog(dialogName)"
+                    >
+                        &times;
+                    </span>
                 </div>
                 <div class="card-body">
                     <div class="mb-5 d-flex flex-column">
